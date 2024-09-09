@@ -127,7 +127,7 @@
   <div class="w3-container w3-padding-32" id="contact">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
     <p>Lets get in touch and talk about your next project.</p>
-    <form action="/action_page.php" target="_blank">
+    <form action="index.php" method="POST" target="_self">
       <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
       <input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email">
       <input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required name="Subject">
@@ -137,6 +137,41 @@
       </button>
     </form>
   </div>
+  
+  <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      // Retrieve form data
+      $name = htmlspecialchars($_POST['Name']);
+      $email = htmlspecialchars($_POST['Email']);
+      $subject = htmlspecialchars($_POST['Subject']);
+      $comment = htmlspecialchars($_POST['Comment']);
+      
+      // Recipient email address
+      $to = 'info@chinchin.com';
+      
+      // Email subject
+      $email_subject = "New Contact Form Submission: $subject";
+      
+      // Email body content
+      $email_body = "You have received a new message from the user $name.\n\n";
+      $email_body .= "Here are the details:\n";
+      $email_body .= "Name: $name\n";
+      $email_body .= "Email: $email\n";
+      $email_body .= "Subject: $subject\n";
+      $email_body .= "Comment: $comment\n";
+      
+      // Email headers
+      $headers = "From: $email\r\n";
+      $headers .= "Reply-To: $email\r\n";
+      
+      // Send email
+      if (mail($to, $email_subject, $email_body, $headers)) {
+          echo "<p>Your message has been sent successfully.</p>";
+      } else {
+          echo "<p>There was a problem sending your message. Please try again later.</p>";
+      }
+    }
+  ?>
   
 <!-- Image of location/map -->
 <div class="w3-container">
