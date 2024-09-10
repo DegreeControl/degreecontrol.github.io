@@ -18,3 +18,8 @@ document.getElementById('contact_form')
                 send_message.value = 'Please provide all information so that we can better help you!';
             });
     });
+
+var scrollto = function(id){
+    var reqId = "#" + id;
+    window.scrollTo(0, $(reqId).offset().top-85);
+}
