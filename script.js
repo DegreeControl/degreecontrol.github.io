@@ -9,6 +9,7 @@ document.getElementById('contact_form')
 
         const serviceID = 'default_service';
         const templateID = 'template_i4qo34c';
+        console.log(this);
 
         emailjs.sendForm(serviceID, templateID, this)
             .then(() => {
