@@ -14,6 +14,6 @@ document.getElementById('contact_form')
             .then(() => {
                 send_message.value = 'Thank you for your message! Our team members will contact you soon.';
             }, (err) => {
-                btn.value = 'Please provide all information so that we can better help you!';
+                send_message.value = 'Please provide all information so that we can better help you!';
             });
     });
