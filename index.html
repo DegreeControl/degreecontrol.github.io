@@ -19,7 +19,7 @@
         >
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right w3-hide-small">
-          <a href="" class="w3-bar-item w3-button" onclick="scrollto('projects')">Projects</a>
+          <button onclick="scrolltofunc('projects')">Projects</button>
           <a href="#about" class="w3-bar-item w3-button">About</a>
           <a href="#contact" class="w3-bar-item w3-button">Contact</a>
         </div>
@@ -52,7 +52,8 @@
     <!-- Page content -->
     <div class="w3-content w3-padding" style="max-width: 1564px">
       <!-- Project Section -->
-      <div class="w3-container w3-padding-32" id="projects" name="projects">
+      <section id="projects" name="projects">
+      <div class="w3-container w3-padding-32">
         <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">
           Projects
         </h3>
@@ -111,6 +112,7 @@
           </div>
         </div>
       </div>
+      </section>
 
       <!-- About Section -->
       <div class="w3-container w3-padding-32" id="about">
