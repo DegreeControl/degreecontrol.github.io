@@ -1,4 +1,4 @@
 var scrolltofunc = function(id){
-    var reqId = "#" + id;
-    window.scrollTo(0, $(reqId).offset().top-85);
+    const element = document.getElementById(id);
+    window.scrollTo(0, element.offsetTop-85);
 }
