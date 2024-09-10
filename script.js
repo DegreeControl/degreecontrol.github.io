@@ -1,36 +1,19 @@
-document.addEventListener('DOMContentLoaded', function() {
-    emailjs.init('XvV4_oouCJVhlC4PG'); // Replace with your EmailJS user ID
-});
+const btn = document.getElementById('contact_form_button');
+const send_message = document.getElementById('send_message');
 
-document.querySelector('#contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+document.getElementById('contact_form')
+    .addEventListener('submit', function (event) {
+        event.preventDefault();
 
-    // Get form values
-    const form = event.target;
-    const formData = new FormData(form);
-    const name = formData.get('Name');
-    const email = formData.get('Email');
-    const subject = formData.get('Subject');
-    const comment = formData.get('Comment');
+        btn.value = 'SENDING...';
 
-    // Send email via EmailJS
-    emailjs.send('service_us8ae4i', 'template_i4qo34c', {
-        from_name: name,
-        from_email: email,
-        subject: subject,
-        message: comment,
-    })
-    .then(function(response) {
-        alert('Message sent successfully!');
-        form.reset(); // Clear form fields
-    })
-    .catch(function(error) {
-        alert('Failed to send message. Please use your email client to send the message.');
-        console.error('Error:', error);
+        const serviceID = 'default_service';
+        const templateID = 'template_i4qo34c';
 
-        // Fallback to mailto
-        const mailtoBody = `Hi,%0D%0A%0D%0AI am ${encodeURIComponent(name)}%0D%0A${encodeURIComponent(comment)}%0D%0A%0D%0AThank You`;
-        const mailtoLink = `mailto:info@degreecontrol.ca?subject=${encodeURIComponent(subject)}&body=${mailtoBody}`;
-        window.location.href = mailtoLink;
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+                send_message.value = 'Thank you for your message! Our team members will contact you soon.';
+            }, (err) => {
+                btn.value = 'Please provide all information so that we can better help you!';
+            });
     });
-});
