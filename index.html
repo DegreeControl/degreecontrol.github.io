@@ -160,28 +160,30 @@
 </head>
 <body class="font-sans text-gray-800 antialiased bg-gray-50">
 
-    <!-- 1. ALWAYS VISIBLE TOP BAR -->
-    <div class="bg-brand-dark text-white text-xs sm:text-sm py-1 sm:py-2 sticky top-0 z-50 border-b border-gray-700">
-        <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-1 sm:gap-0">
-            <div class="space-x-4 mb-2 sm:mb-0">
-                <a href="tel:+16044993940" class="hover:text-brand-blue transition font-bold">
-                    <i class="fas fa-phone-alt mr-2"></i>Call Us: +1 (604) 499-3940
-                </a>
-                <span class="hidden sm:inline text-gray-500">|</span>
-                <a href="mailto:info@degreecontrol.com" class="hover:text-brand-blue transition">
-                    <i class="fas fa-envelope mr-2"></i>info@degreecontrol.com
-                </a>
-            </div>
-            <div class="font-semibold text-brand-accent animate-pulse">
-                Get a Free Quote on First Contact!
+    <!-- 1. COMBINED TOP BAR & NAVIGATION -->
+    <nav class="sticky top-0 z-50 shadow-md" id="navbar">
+        <!-- Top Bar -->
+        <div class="bg-brand-dark text-white text-xs sm:text-sm py-1 sm:py-2 border-b border-gray-700">
+            <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-1 sm:gap-0">
+                <div class="space-x-4 mb-1 sm:mb-0">
+                    <a href="tel:+16044993940" class="hover:text-brand-blue transition font-bold">
+                        <i class="fas fa-phone-alt mr-2"></i>Call Us: +1 (604) 499-3940
+                    </a>
+                    <span class="hidden sm:inline text-gray-500">|</span>
+                    <a href="mailto:info@degreecontrol.com" class="hover:text-brand-blue transition">
+                        <i class="fas fa-envelope mr-2"></i>info@degreecontrol.com
+                    </a>
+                </div>
+                <div class="font-semibold text-brand-accent animate-pulse text-xs sm:text-sm">
+                    Get a Free Quote on First Contact!
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 2. NAVIGATION BAR -->
-    <nav class="bg-white shadow-md sticky top-[50px] sm:top-[54px] z-40 transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-2 sm:py-4">
+        <!-- Navigation Bar -->
+        <div class="bg-white transition-all duration-300">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center py-2 sm:py-4">
                 <!-- Logo -->
                 <a href="#" class="flex items-center space-x-2 group">
                     <div class="group-hover:rotate-12 transition transform">
@@ -223,6 +225,7 @@
             <a href="#portfolio" class="nav-link block py-3 px-4 hover:bg-gray-100">Jobs & Projects</a>
             <a href="#reviews" class="nav-link block py-3 px-4 hover:bg-gray-100">Reviews</a>
             <a href="#contact" class="nav-link block py-3 px-4 bg-brand-blue text-white">Contact Us</a>
+        </div>
         </div>
     </nav>
 
