@@ -74,6 +74,8 @@
         /* The Testimonial Scroller Animation */
         .scroller {
             max-width: 100%;
+            display: flex;
+            justify-content: center;
         }
         
         .scroller__inner {
@@ -81,6 +83,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
+            justify-content: center;
         }
 
         .scroller[data-animated="true"] {
@@ -530,7 +533,7 @@
             </div>
         </div>
 
-        <div class="scroller" data-animated="false">
+        <div class="scroller flex justify-center" data-animated="true">
             <ul class="scroller__inner">
                 <!-- Review Card Template -->
                 <li class="w-[350px] bg-slate-800 p-6 rounded-xl border border-slate-700 shrink-0">
