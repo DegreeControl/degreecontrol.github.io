@@ -128,6 +128,28 @@
         #mobile-menu.open {
             max-height: 400px;
         }
+
+        /* Job Card Image Carousel */
+        .job-image-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 0;
+        }
+
+        .job-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .job-image.active {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="font-sans text-gray-800 antialiased bg-gray-50">
@@ -358,15 +380,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <!-- Job Card 1: Coil Cleaning -->
-                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-brand-blue group">
-                    <div class="h-48 bg-gradient-to-r from-brand-blue to-cyan-500 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-20">
-                            <i class="fas fa-water text-9xl text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i>
-                        </div>
-                        <div class="relative z-10 text-center">
-                            <i class="fas fa-droplet text-5xl text-white mb-2"></i>
-                            <p class="text-white font-bold text-sm">Professional Coil Cleaning</p>
-                        </div>
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-brand-blue group job-card" data-job-id="1">
+                    <div class="job-image-container">
+                        <img class="job-image active" src="jobs/coil-cleaning-1.jpg" alt="Coil cleaning before">
+                        <img class="job-image" src="jobs/coil-cleaning-2.jpg" alt="Coil cleaning after">
+                        <img class="job-image" src="jobs/coil-cleaning-3.jpg" alt="Coil cleaning process">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-slate-800 mb-3">Deep Coil Cleaning & Restoration</h3>
@@ -384,15 +402,11 @@
                 </div>
 
                 <!-- Job Card 2: Rooftop HVAC Installation -->
-                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-brand-accent group">
-                    <div class="h-48 bg-gradient-to-r from-brand-accent to-orange-400 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-20">
-                            <i class="fas fa-building text-9xl text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i>
-                        </div>
-                        <div class="relative z-10 text-center">
-                            <i class="fas fa-fan text-5xl text-white mb-2"></i>
-                            <p class="text-white font-bold text-sm">Rooftop Installation</p>
-                        </div>
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-brand-accent group job-card" data-job-id="2">
+                    <div class="job-image-container">
+                        <img class="job-image active" src="jobs/rooftop-hvac-1.jpg" alt="Rooftop unit installation">
+                        <img class="job-image" src="jobs/rooftop-hvac-2.jpg" alt="Rooftop HVAC setup">
+                        <img class="job-image" src="jobs/rooftop-hvac-3.jpg" alt="Rooftop installation complete">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-slate-800 mb-3">Commercial Rooftop HVAC Installation</h3>
@@ -410,15 +424,11 @@
                 </div>
 
                 <!-- Job Card 3: Furnace Replacement -->
-                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-red-500 group">
-                    <div class="h-48 bg-gradient-to-r from-red-500 to-orange-400 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-20">
-                            <i class="fas fa-fire text-9xl text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i>
-                        </div>
-                        <div class="relative z-10 text-center">
-                            <i class="fas fa-flame text-5xl text-white mb-2"></i>
-                            <p class="text-white font-bold text-sm">Furnace Service</p>
-                        </div>
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-red-500 group job-card" data-job-id="3">
+                    <div class="job-image-container">
+                        <img class="job-image active" src="jobs/furnace-1.jpg" alt="Old furnace removal">
+                        <img class="job-image" src="jobs/furnace-2.jpg" alt="New furnace installation">
+                        <img class="job-image" src="jobs/furnace-3.jpg" alt="Furnace installation complete">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-slate-800 mb-3">Complete Furnace Replacement</h3>
@@ -436,15 +446,11 @@
                 </div>
 
                 <!-- Job Card 4: Heat Pump Installation -->
-                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-green-500 group">
-                    <div class="h-48 bg-gradient-to-r from-green-500 to-emerald-400 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-20">
-                            <i class="fas fa-arrows-alt text-9xl text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i>
-                        </div>
-                        <div class="relative z-10 text-center">
-                            <i class="fas fa-exchange-alt text-5xl text-white mb-2"></i>
-                            <p class="text-white font-bold text-sm">Heat Pump Install</p>
-                        </div>
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-green-500 group job-card" data-job-id="4">
+                    <div class="job-image-container">
+                        <img class="job-image active" src="jobs/heat-pump-1.jpg" alt="Heat pump exterior unit">
+                        <img class="job-image" src="jobs/heat-pump-2.jpg" alt="Heat pump installation">
+                        <img class="job-image" src="jobs/heat-pump-3.jpg" alt="Heat pump system complete">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-slate-800 mb-3">Dual-Zone Heat Pump System</h3>
@@ -462,15 +468,11 @@
                 </div>
 
                 <!-- Job Card 5: Commercial Refrigeration -->
-                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-blue-500 group">
-                    <div class="h-48 bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-20">
-                            <i class="fas fa-snowflake text-9xl text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i>
-                        </div>
-                        <div class="relative z-10 text-center">
-                            <i class="fas fa-ice-cream text-5xl text-white mb-2"></i>
-                            <p class="text-white font-bold text-sm">Refrigeration System</p>
-                        </div>
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-blue-500 group job-card" data-job-id="5">
+                    <div class="job-image-container">
+                        <img class="job-image active" src="jobs/cooler-1.jpg" alt="Walk-in cooler before">
+                        <img class="job-image" src="jobs/cooler-2.jpg" alt="Refrigeration system repair">
+                        <img class="job-image" src="jobs/cooler-3.jpg" alt="Cooler maintenance complete">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-slate-800 mb-3">Walk-In Cooler Repair & Maintenance</h3>
@@ -488,15 +490,11 @@
                 </div>
 
                 <!-- Job Card 6: Ductwork & Ventilation -->
-                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-purple-500 group">
-                    <div class="h-48 bg-gradient-to-r from-purple-500 to-indigo-400 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-20">
-                            <i class="fas fa-wind text-9xl text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i>
-                        </div>
-                        <div class="relative z-10 text-center">
-                            <i class="fas fa-fan text-5xl text-white mb-2"></i>
-                            <p class="text-white font-bold text-sm">Ductwork Install</p>
-                        </div>
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-purple-500 group job-card" data-job-id="6">
+                    <div class="job-image-container">
+                        <img class="job-image active" src="jobs/ductwork-1.jpg" alt="Ductwork installation">
+                        <img class="job-image" src="jobs/ductwork-2.jpg" alt="Ductwork in progress">
+                        <img class="job-image" src="jobs/ductwork-3.jpg" alt="Ductwork installation complete">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-slate-800 mb-3">Complete Ductwork Redesign</h3>
@@ -736,7 +734,43 @@
             });
         }
 
-        // 2. Initialize the Infinite Scroller Animation
+        // 2. Job Card Image Carousel (Fade on hover)
+        const jobCards = document.querySelectorAll('.job-card');
+        
+        jobCards.forEach(card => {
+            let currentImageIndex = 0;
+            let carouselInterval = null;
+            const images = card.querySelectorAll('.job-image');
+            
+            // Start carousel on hover
+            card.addEventListener('mouseenter', () => {
+                if (carouselInterval) return; // Prevent multiple intervals
+                
+                carouselInterval = setInterval(() => {
+                    // Remove active from current image
+                    images[currentImageIndex].classList.remove('active');
+                    
+                    // Move to next image
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    
+                    // Add active to next image
+                    images[currentImageIndex].classList.add('active');
+                }, 3000);
+            });
+            
+            // Stop carousel on mouse leave
+            card.addEventListener('mouseleave', () => {
+                clearInterval(carouselInterval);
+                carouselInterval = null;
+                
+                // Reset to first image
+                images.forEach(img => img.classList.remove('active'));
+                currentImageIndex = 0;
+                images[0].classList.add('active');
+            });
+        });
+
+        // 3. Initialize the Infinite Scroller Animation
         const scrollers = document.querySelectorAll(".scroller");
         if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
             addAnimation();
