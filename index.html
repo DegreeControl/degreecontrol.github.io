@@ -150,6 +150,12 @@
         .job-image.active {
             opacity: 1;
         }
+
+        /* Active Navigation Link Styling */
+        .nav-link.active {
+            font-weight: 700;
+            color: #0EA5E9;
+        }
     </style>
 </head>
 <body class="font-sans text-gray-800 antialiased bg-gray-50">
@@ -189,12 +195,12 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex space-x-8 font-medium text-slate-600">
-                    <a href="#about" class="hover:text-brand-blue hover:-translate-y-0.5 transition-transform display-block">About</a>
-                    <a href="#services" class="hover:text-brand-blue hover:-translate-y-0.5 transition-transform display-block">Our Services</a>
-                    <a href="#licenses" class="hover:text-brand-blue hover:-translate-y-0.5 transition-transform display-block">License</a>
-                    <a href="#portfolio" class="hover:text-brand-blue hover:-translate-y-0.5 transition-transform display-block">Jobs & Projects</a>
-                    <a href="#reviews" class="hover:text-brand-blue hover:-translate-y-0.5 transition-transform display-block">Reviews</a>
-                    <a href="#contact" class="hover:text-brand-blue hover:-translate-y-0.5 transition-transform display-block">Contact</a>
+                    <a href="#about" class="nav-link hover:text-brand-blue hover:-translate-y-0.5 transition-transform display-block">About</a>
+                    <a href="#services" class="nav-link hover:text-brand-blue hover:-translate-y-0.5 transition-transform display-block">Our Services</a>
+                    <a href="#licenses" class="nav-link hover:text-brand-blue hover:-translate-y-0.5 transition-transform display-block">License</a>
+                    <a href="#portfolio" class="nav-link hover:text-brand-blue hover:-translate-y-0.5 transition-transform display-block">Jobs & Projects</a>
+                    <a href="#reviews" class="nav-link hover:text-brand-blue hover:-translate-y-0.5 transition-transform display-block">Reviews</a>
+                    <a href="#contact" class="nav-link hover:text-brand-blue hover:-translate-y-0.5 transition-transform display-block">Contact</a>
                 </div>
 
                 <!-- CTA Button -->
@@ -211,12 +217,12 @@
 
         <!-- Mobile Dropdown -->
         <div id="mobile-menu" class="lg:hidden bg-white border-t">
-            <a href="#about" class="block py-3 px-4 hover:bg-gray-100">About</a>
-            <a href="#services" class="block py-3 px-4 hover:bg-gray-100">Our Services</a>
-            <a href="#licenses" class="block py-3 px-4 hover:bg-gray-100">License</a>
-            <a href="#portfolio" class="block py-3 px-4 hover:bg-gray-100">Jobs & Projects</a>
-            <a href="#reviews" class="block py-3 px-4 hover:bg-gray-100">Reviews</a>
-            <a href="#contact" class="block py-3 px-4 bg-brand-blue text-white">Contact Us</a>
+            <a href="#about" class="nav-link block py-3 px-4 hover:bg-gray-100">About</a>
+            <a href="#services" class="nav-link block py-3 px-4 hover:bg-gray-100">Our Services</a>
+            <a href="#licenses" class="nav-link block py-3 px-4 hover:bg-gray-100">License</a>
+            <a href="#portfolio" class="nav-link block py-3 px-4 hover:bg-gray-100">Jobs & Projects</a>
+            <a href="#reviews" class="nav-link block py-3 px-4 hover:bg-gray-100">Reviews</a>
+            <a href="#contact" class="nav-link block py-3 px-4 bg-brand-blue text-white">Contact Us</a>
         </div>
     </nav>
 
@@ -719,6 +725,32 @@
                 });
             });
         }
+
+        // 4. Active Navigation Link Highlighting
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        function updateActiveLink() {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        updateActiveLink(); // Call on page load to set initial state
     </script>
 
     <!-- Local scripts -->
