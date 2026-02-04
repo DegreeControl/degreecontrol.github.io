@@ -661,14 +661,11 @@
                 <div class="lg:w-2/3 bg-slate-50 rounded-2xl p-2 border border-slate-200">
                     <!-- Microsoft Forms Service Request -->
                     <iframe 
-                        src="https://forms.office.com/Pages/ResponsePage.aspx?id=LMq_2zwsek2smnY0jQ_bpqR-55tQsSRPiiyJHJGSMD9UNkdWNUVPNko3TUxPV04zQzQzQksyTVkzQS4u&origin=QRCode" 
-                        class="w-full h-[600px] rounded-xl bg-white" 
-                        frameborder="0" 
-                        marginheight="0" 
-                        marginwidth="0"
-                        height="600px";
-                        style="border: none;">
-                        Loading service request form...
+                        id="contact-form"
+                        data-src="https://forms.office.com/Pages/ResponsePage.aspx?id=LMq_2zwsek2smnY0jQ_bpqR-55tQsSRPiiyJHJGSMD9UNkdWNUVPNko3TUxPV04zQzQzQksyTVkzQS4u&embed=true"
+                        sandbox="allow-scripts allow-same-origin allow-forms"
+                        class="w-full h-[600px] rounded-xl"
+                        frameborder="0">
                     </iframe>
                 </div>
             </div>
@@ -685,15 +682,25 @@
 
     <!-- JS Functionality -->
     <script>
-        window.scrollTo(0, 0);
-        
-        window.addEventListener('load', () => {
-            // Short timeout to catch the MS Form autofocus jump
+        // GHOST LOADING STRATEGY
+        window.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.getElementById('contact-form');
+            const loader = document.getElementById('page-loader');
+            
+            // Step 1: Force scroll to top instantly
+            window.scrollTo(0, 0);
+
+            // Step 2: Delay iframe injection until after page is ready
             setTimeout(() => {
-                window.scrollTo(0, 0);
-                // Now fade the form in once we're sure we've locked the scroll
-                document.getElementById('form-wrapper').style.opacity = '1';
-            }, 50);
+                iframe.src = iframe.getAttribute('data-src');
+                
+                // Step 3: Once iframe starts loading, wait a bit then show page
+                setTimeout(() => {
+                    window.scrollTo(0, 0); // One final force to top
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.style.display = 'none', 500);
+                }, 100);
+            }, 300);
         });
         
         // 1. Mobile Menu Toggle (guarded to avoid runtime errors if elements missing)
