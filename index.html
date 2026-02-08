@@ -360,7 +360,8 @@
     <!-- 6. LICENSE & ALLOWANCES PLACEHOLDER -->
     <section id="licenses" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-2xl font-bold text-slate-800 mb-8 text-center">License</h2>
+            <h2 class="text-4xl font-bold text-slate-800 mb-4 text-center">License</h2>
+            <div class="w-24 h-1 bg-brand-blue mx-auto rounded"></div>
             
             <div class="flex justify-center items-center">
                 <div class="text-center">
@@ -658,16 +659,17 @@
                 </div>
 
                 <!-- Service Request Form Iframe Right -->
-                <div class="lg:w-2/3 bg-slate-50 rounded-2xl p-2 border border-slate-200">
-                    <!-- Microsoft Forms Service Request -->
+                <div id="form-wrapper" 
+                     class="lg:w-2/3 bg-white rounded-2xl p-1 shadow-inner border border-slate-200"
+                     style="contain: layout; overflow: hidden; min-height: 600px;"
+                     tabindex="-1">
                     <iframe 
-                        src="https://forms.office.com/Pages/ResponsePage.aspx?id=LMq_2zwsek2smnY0jQ_bpqR-55tQsSRPiiyJHJGSMD9UNkdWNUVPNko3TUxPV04zQzQzQksyTVkzQS4u&origin=QRCode" 
-                        class="w-full h-[600px] rounded-xl bg-white" 
-                        frameborder="0" 
-                        marginheight="0" 
-                        marginwidth="0"
-                        style="border: none; min-height: 600px;">
-                        Loading service request form...
+                        id="contact-form"
+                        style="display: none;"
+                        data-src="https://forms.office.com/Pages/ResponsePage.aspx?id=LMq_2zwsek2smnY0jQ_bpqR-55tQsSRPiiyJHJGSMD9UNkdWNUVPNko3TUxPV04zQzQzQksyTVkzQS4u&embed=true"
+                        sandbox="allow-scripts allow-same-origin allow-forms"
+                        class="w-full h-[600px] rounded-xl"
+                        frameborder="0">
                     </iframe>
                 </div>
             </div>
@@ -684,6 +686,27 @@
 
     <!-- JS Functionality -->
     <script>
+        // GHOST LOADING STRATEGY
+        window.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.getElementById('contact-form');
+            const loader = document.getElementById('page-loader');
+            
+            window.scrollTo(0, 0);
+
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    iframe.src = iframe.getAttribute('data-src');
+                    iframe.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        window.scrollTo(0, 0);
+                        loader.style.opacity = '0';
+                        setTimeout(() => loader.style.display = 'none', 500);
+                    }, 150);
+                }, 300);
+            });
+        });
+        
         // 1. Mobile Menu Toggle (guarded to avoid runtime errors if elements missing)
         const btn = document.getElementById('menu-btn');
         const nav = document.getElementById('mobile-menu');
@@ -786,6 +809,41 @@
 
         window.addEventListener('scroll', updateActiveLink);
         updateActiveLink(); // Call on page load to set initial state
+
+                // 5. Smooth Scroll without URL Hash
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); // Stop the URL from changing
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Account for the sticky header height so content isn't hidden
+                    const headerOffset = 80; 
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+        
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                    
+                    // Close mobile menu if it's open
+                    const nav = document.getElementById('mobile-menu');
+                    const btn = document.getElementById('menu-btn');
+                    if (nav && nav.classList.contains('open')) {
+                        nav.classList.remove('open');
+                        const icon = btn.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                }
+            });
+        });
     </script>
 
     <!-- Local scripts -->
